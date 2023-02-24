@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angel Cruz Salvador TicTacToe</title>
+    <!-- <script type="text/javascript" src="tic.js"></script> -->
+    <style>
+        body {
+        background-color: blanchedalmond;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        }
+
+        .box {
+            display: flex;
+            flex-wrap: wrap;
+            width: 300px;
+            height: 300px;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .box div {
+            width: 100px;
+            height: 100px;
+            border: 3px solid white;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .box button {
+            width: 100px;
+            height: 100px;
+            border-color: white;
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <!-- Entire HTML -->
+    <h1>TIC TAC TOE !</h1>
+    </div>
+    <div id="box" class="box">
+    </div>
+    <div id="announcement"></div>
+    <button id="reset-button">Click to play again!</button>
+    <!-- /Entire HTML -->
+
+    <script>
+        // Intialize button, grid, starting player
+        var box = document.getElementById("box");
+        var player= "X";
+        var buttons = [];
+
+        // Fill out gfrid with js
+        for (var i = 0; i < 9; i++) {
+            var div = document.createElement("div"); 
+             var button = document.createElement("button"); 
+            buttons.push(button); 
+             div.appendChild(button); 
+            box.appendChild(div); 
+
+            // Add event listener to button
+            button.addEventListener("click", function() {
+                if (this.innerHTML === "") { 
+                 this.innerHTML = currentPlayer;
+                winnerLoop(); 
+                switchPlayer(); 
+             }
+        });
+        }
+
+        //check each possible combination thru brute force
+        function winnerLoop() {
+            for (var i = 0; i < 9; i += 3) {
+                if (buttons[i].innerHTML !== "" && buttons[i].innerHTML === buttons[i+1].innerHTML && buttons[i].innerHTML === buttons[i+2].innerHTML) {
+                document.getElementById("announcement").innerHTML = "Player " + player+ " won!";
+                return;
+                }
+            }
+
+            for (var i = 0; i < 3; i++) {
+                if (buttons[i].innerHTML !== "" && buttons[i].innerHTML === buttons[i+3].innerHTML && buttons[i].innerHTML === buttons[i+6].innerHTML) {
+                document.getElementById("announcement").innerHTML = "Player " + player+ " won!";
+                return;
+                }
+            }
+
+            if (buttons[0].innerHTML !== "" &&  buttons[0].innerHTML === buttons[4].innerHTML && buttons[0].innerHTML === buttons[8].innerHTML) {
+                document.getElementById("announcement").innerHTML = "Player " + player+ " won!";
+                return;
+            }
+
+            if (buttons[2].innerHTML !== "" && buttons[2].innerHTML === buttons[4].innerHTML && buttons[2].innerHTML === buttons[6].innerHTML) {
+                document.getElementById("announcement").innerHTML = "Player " + player+ " won!";
+                return;
+            }
+            }
+            
+
+        function switchPlayer() {
+            if (player=== "X") {
+                player= "O";
+            } else {
+                player= "X";
+            }
+        }
+        var resetButton =document.getElementById("reset-button");
+
+        resetButton.addEventListener("click", 
+            function(){
+                location.reload();
+                });
+    </script>
+</body>
+</html>
+
+
+
